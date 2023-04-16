@@ -1,3 +1,4 @@
+import { LINKS } from "@/constants/links";
 import Link from "next/link";
 import React from "react";
 
@@ -19,10 +20,13 @@ export const Desktop = () => {
         Giulia
       </Link>
       <div className="flex gap-2">
-        <Link href="/instagram" className="btn inline-block">
+        <Link href={LINKS.giulia.instagram} className="btn inline-block">
           Instagram
         </Link>
-        <Link href="/email" className="btn inline-block">
+        <Link
+          href={`mailto:${LINKS.giulia.email}?subject=%F0%9F%93%B8%20`}
+          className="btn inline-block"
+        >
           Email
         </Link>
         <Link href="#" className="btn inline-block">

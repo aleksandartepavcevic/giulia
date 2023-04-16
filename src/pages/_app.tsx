@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import localFont from "@next/font/local";
 import { Poppins } from "@next/font/google";
+import { Navigation } from "@/components/Navigation/Navigation";
+import { Grain } from "@/components/Grain/Grain";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -42,7 +44,11 @@ const roslindale = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${roslindale.variable} ${poppins.variable} font-sans`}>
+    <main
+      className={`relative ${roslindale.variable} ${poppins.variable} font-sans`}
+    >
+      <Grain />
+      <Navigation />
       <Component {...pageProps} />
     </main>
   );

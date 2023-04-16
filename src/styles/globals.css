@@ -24,3 +24,10 @@
     background-color: theme(colors.white/10%);
   }
 }
+
+@layer utilities {
+  .overflow-hidden-updated {
+    @apply overflow-hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+}

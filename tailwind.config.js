@@ -39,6 +39,43 @@ module.exports = {
       },
     },
     extend: {
+      keyframes: {
+        noise: {
+          "0%, 100%": {
+            backgroundPosition: "0 0",
+          },
+          "10%": {
+            backgroundPosition: "-5% -10%",
+          },
+          "20%": {
+            backgroundPosition: "-15% 5%",
+          },
+          "30%": {
+            backgroundPosition: "7% -25%",
+          },
+          "40%": {
+            backgroundPosition: "20% 25%",
+          },
+          "50%": {
+            backgroundPosition: "-25% 10%",
+          },
+          "60%": {
+            backgroundPosition: "15% 5%",
+          },
+          "70%": {
+            backgroundPosition: "0% 15%",
+          },
+          "80%": {
+            backgroundPosition: "25% 35%",
+          },
+          "90%": {
+            backgroundPosition: "-10% 10%",
+          },
+        },
+      },
+      animation: {
+        "grain-texture": "2s steps(1) infinite noise",
+      },
       fontFamily: {
         roslindale: ["var(--font-roslindale)", ...fontFamily.sans],
         poppins: ["var(--font-poppins)", ...fontFamily.sans],
@@ -47,3 +84,7 @@ module.exports = {
   },
   plugins: [],
 };
+
+// 0%, 100% {
+//   background-position: 0 0;
+// }

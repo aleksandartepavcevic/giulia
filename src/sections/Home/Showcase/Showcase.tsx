@@ -5,7 +5,7 @@ import React from "react";
 export const Showcase = () => {
   return (
     <article className="flex items-center justify-center h-screen">
-      <div className="relative w-[50vw] h-[80%] max-w-[600px] rounded-3xl overflow-hidden flex-auto">
+      <div className="relative w-[50vw] h-[80%] min-w-[300px] max-w-[600px] rounded-3xl overflow-hidden flex-auto">
         <Image
           className="object-cover"
           src="/showcase-1.jpeg"
@@ -42,7 +42,7 @@ export const Showcase = () => {
         </div>
         <div className="w-2/4 h-4 bg-orange rounded-xl"></div>
       </div>
-      <div className="relative w-[50vw] h-[80%] max-w-[600px] rounded-3xl overflow-hidden flex-auto">
+      <div className="relative w-[50vw] h-[80%] min-w-[300px] max-w-[600px] rounded-3xl overflow-hidden flex-auto">
         <Image
           className="object-cover"
           src="/showcase-2.jpeg"

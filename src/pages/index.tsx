@@ -1,6 +1,8 @@
 import { Navigation } from "@/components/Navigation/Navigation";
+import { Footer } from "@/sections/Footer/Footer";
 import { Header } from "@/sections/Home/Header/Header";
 import { Intro } from "@/sections/Home/Intro/Intro";
+import { Movie } from "@/sections/Home/Movie/Movie";
 import { Showcase } from "@/sections/Home/Showcase/Showcase";
 import Head from "next/head";
 import Image from "next/image";
@@ -15,12 +17,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navigation />
-      <div className="bg-black-bg">
+      <div className="bg-black-bg overflow-hidden">
         <div className="container">
           <Header />
           <Intro />
           <Showcase />
+          <Movie />
+          <Footer />
         </div>
       </div>
     </>
