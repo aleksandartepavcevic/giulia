@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Desktop } from "./components/Desktop/Desktop";
 import { Mobile } from "./components/Mobile/Mobile";
-import { Menu } from "./components/Menu/Menu";
 import { NavigationContext } from "./Navigation.context";
+import Menu from "./components/Menu/Menu";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
