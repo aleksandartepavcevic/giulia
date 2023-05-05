@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { NavigationContext } from "../../Navigation.context";
 import { ClickAwayListener } from "@mui/base";
+import { Button } from "@/components/Button/Button";
 
 export const Mobile = () => {
   const { setIsOpen } = useContext(NavigationContext) || {};
@@ -10,7 +11,7 @@ export const Mobile = () => {
   return (
     <>
       <ClickAwayListener onClickAway={handleOnClickAway}>
-        <div className="lg:hidden flex justify-between relative z-50">
+        <div className="lg:hidden flex items-center justify-between relative z-50">
           <Link
             href="/"
             className="text-white text-3xl font-roslindale font-thin"
@@ -18,12 +19,10 @@ export const Mobile = () => {
             Giulia
           </Link>
           <div className="flex gap-2">
-            <Link href="#" className="btn">
-              F/23
+            <Link href="#">
+              <Button>F/23</Button>
             </Link>
-            <button className="btn" onClick={() => setIsOpen?.((s) => !s)}>
-              Menu
-            </button>
+            <Button onClick={() => setIsOpen?.((s) => !s)}>Menu</Button>
           </div>
         </div>
       </ClickAwayListener>

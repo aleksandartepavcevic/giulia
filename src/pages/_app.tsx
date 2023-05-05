@@ -9,6 +9,7 @@ const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 const roslindale = localFont({
@@ -40,13 +41,12 @@ const roslindale = localFont({
       style: "normal",
     },
   ],
+  display: "swap",
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main
-      className={`relative ${roslindale.variable} ${poppins.variable} font-sans`}
-    >
+    <main className={`relative ${roslindale.variable} ${poppins.variable}`}>
       <Grain />
       <Navigation />
       <Component {...pageProps} />

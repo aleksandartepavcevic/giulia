@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -80,7 +81,7 @@ export const Movie = () => {
           />
         </div>
       </div>
-      <button className="btn mt-14">See case study</button>
+      <Button className="mt-14">See case study</Button>
     </section>
   );
 };

@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { NavigationContext } from "@/components/Navigation/Navigation.context";
+import { Button } from "@/components/Button/Button";
 
 export const Intro = () => {
-  const { setIsOpen } = useContext(NavigationContext) || {};
   const animationOptions = {
     initial: { scale: 1 },
     whileHover: {
@@ -19,9 +18,6 @@ export const Intro = () => {
 
   return (
     <section className="container max-w-3xl mt-28">
-      <button className="btn" onClick={() => setIsOpen?.(true)}>
-        click
-      </button>
       <div className="flex justify-center items-end space-y-3 gap-3 flex-wrap max-md:gap-2">
         <h3 className={headingStyles}>A</h3>
         <motion.div
@@ -89,8 +85,8 @@ export const Intro = () => {
         filmmaking which is one of the main creative outlets she pursues today.
       </p>
       <div className="flex justify-center mt-10">
-        <Link href="/about" className="btn">
-          Read my story
+        <Link href="/about">
+          <Button>Read my story</Button>
         </Link>
       </div>
     </section>

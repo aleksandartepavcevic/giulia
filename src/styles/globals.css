@@ -2,29 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: theme(padding[1.5]) theme(padding[3]);
-    background-color: theme(colors.transparent);
-    border: solid 1px theme(colors.white);
-    border-radius: theme(borderRadius.full);
-    text-transform: uppercase;
-    font-size: theme(fontSize.xs);
-    font-family: theme(fontFamily.poppins);
-    font-weight: theme(fontWeight.medium);
-    color: theme(colors.white);
-    transition: theme(transitionProperty.colors);
-    transition-duration: theme(transitionDuration.300);
-  }
-
-  .btn:hover {
-    background-color: theme(colors.white/10%);
-  }
-}
-
 @layer utilities {
   .overflow-hidden-updated {
     @apply overflow-hidden;

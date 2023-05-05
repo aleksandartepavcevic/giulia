@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -36,8 +37,8 @@ export const Showcase = () => {
           <h1 className="text-white text-8xl text-center font-roslindale font-light">
             Follow The <br /> Tracks
           </h1>
-          <Link href="/stills/test" className="btn">
-            See case study
+          <Link href="/stills/test">
+            <Button>See case study</Button>
           </Link>
         </div>
         <div className="w-2/4 h-4 bg-orange rounded-xl"></div>

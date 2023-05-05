@@ -1,13 +1,13 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" style={{ overscrollBehavior: "none" }}>
       <Head />
-      <body>
+      <body style={{ overscrollBehavior: "none" }}>
         <Main />
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

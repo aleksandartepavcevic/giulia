@@ -1,3 +1,4 @@
+import { Button } from "@/components/Button/Button";
 import { LINKS } from "@/constants/links";
 import React from "react";
 
@@ -22,29 +23,14 @@ export const Footer = () => {
           Giulia Gartner &copy; 2023
         </h6>
         <div className="flex gap-3 max-md:order-1">
-          <a
-            href={LINKS.giulia.youtube}
-            target="_blank"
-            rel="noreferrer"
-            className="btn"
-          >
-            Youtube
+          <a href={LINKS.giulia.youtube} target="_blank" rel="noreferrer">
+            <Button>Youtube</Button>
           </a>
-          <a
-            href={LINKS.giulia.instagram}
-            target="_blank"
-            rel="noreferrer"
-            className="btn"
-          >
-            Instagram
+          <a href={LINKS.giulia.instagram} target="_blank" rel="noreferrer">
+            <Button>Instagram</Button>
           </a>
-          <a
-            href={LINKS.giulia.twitter}
-            target="_blank"
-            rel="noreferrer"
-            className="btn"
-          >
-            Twitter
+          <a href={LINKS.giulia.twitter} target="_blank" rel="noreferrer">
+            <Button>Twitter</Button>
           </a>
         </div>
         <a
