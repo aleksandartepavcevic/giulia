@@ -4,7 +4,6 @@ import localFont from "@next/font/local";
 import { Poppins } from "@next/font/google";
 import { Navigation } from "@/components/Navigation/Navigation";
 import { Grain } from "@/components/Grain/Grain";
-import { ScrollerMotion } from "scroller-motion";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -50,9 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={`relative ${roslindale.variable} ${poppins.variable}`}>
       <Grain />
       <Navigation />
-      <ScrollerMotion>
-        <Component {...pageProps} />
-      </ScrollerMotion>
+      <Component {...pageProps} />
     </main>
   );
 }
