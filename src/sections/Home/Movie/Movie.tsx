@@ -1,11 +1,38 @@
 import { Button } from "@/components/Button/Button";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
 
 export const Movie = () => {
+  const ref = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0);
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() || { x: 0, width: 0 };
+    return val - bounds.x - bounds?.width / 2;
+  });
+  const rotateY = useTransform(
+    distance,
+    [-600, 0, 600],
+    ["-8deg", "0deg", "8deg"]
+  );
+  const translate3D = useTransform(
+    distance,
+    [-600, 0, 600],
+    [
+      "translate3d(30px, 0px, 0px)",
+      "translate3d(0px, 0px, 0px)",
+      "translate3d(-30px, 0px, 0px)",
+    ]
+  );
   return (
-    <section className="flex justify-center items-center flex-col">
+    <section
+      onMouseMove={(e) => {
+        mouseX.set(e.clientX);
+      }}
+      ref={ref}
+      className="flex justify-center items-center flex-col"
+    >
       <div className="flex items-center gap-5 mb-10">
         <p className="text-white font-poppins uppercase text-xs">
           November 2022
@@ -29,16 +56,23 @@ export const Movie = () => {
       <h2 className="text-white text-7xl md:text-8xl font-roslindale font-light mb-20">
         Amelia
       </h2>
-      <div className="relative">
-        <Link href="/motion/test" className="relative">
-          <div className="relative z-10 w-[60vw] h-[55vh] max-w-[1024px] max-h-[768px] rounded-3xl overflow-hidden flex-auto">
+      <motion.div style={{ rotateY }} className="relative">
+        <Link href="/motion/test" className="overflow-hidden">
+          <motion.div
+            style={{
+              // transform: translate3D,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+            }}
+            className="relative z-10 w-[60vw] h-[55vh] max-w-[1024px] max-h-[768px] rounded-3xl overflow-hidden flex-auto"
+          >
             <Image
               className="object-cover"
               src="/video-thumbnail-1.jpeg"
               alt="Image"
               fill
             />
-          </div>
+          </motion.div>
           <div className="absolute flex justify-center items-center z-20 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] w-[100px] h-[100px] bg-black/40 rounded-full backdrop-blur-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +114,7 @@ export const Movie = () => {
             fill
           />
         </div>
-      </div>
+      </motion.div>
       <Button className="mt-20 md:mt-14">See case study</Button>
     </section>
   );
