@@ -1,12 +1,9 @@
-import { Navigation } from "@/components/Navigation/Navigation";
 import { Footer } from "@/sections/Footer/Footer";
 import { Header } from "@/sections/Home/Header/Header";
 import { Intro } from "@/sections/Home/Intro/Intro";
 import { Movie } from "@/sections/Home/Movie/Movie";
 import { Showcase } from "@/sections/Home/Showcase/Showcase";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,6 +18,7 @@ export default function Home() {
         <div className="container">
           <Header />
           <Intro />
+          <Showcase />
           <Showcase />
           <Movie />
           <Footer />
