@@ -4,12 +4,14 @@ export const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
 
   const handleChange = useCallback(
-    (e: MediaQueryListEvent) => setMatches(e.matches),
+    (e: MediaQueryListEvent | MediaQueryList) => setMatches(e.matches),
     []
   );
 
   useEffect(() => {
     const matchQueryList = window.matchMedia(query);
+
+    handleChange(matchQueryList);
 
     matchQueryList.addEventListener("change", handleChange);
 
