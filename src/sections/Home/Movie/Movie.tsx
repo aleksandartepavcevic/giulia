@@ -7,7 +7,7 @@ export const Movie = () => {
   return (
     <section className="flex justify-center items-center flex-col">
       <div className="flex items-center gap-5 mb-10">
-        <p className="text-white font-poppins uppercase text-sm">
+        <p className="text-white font-poppins uppercase text-xs">
           November 2022
         </p>
         <svg
@@ -22,11 +22,11 @@ export const Movie = () => {
             clipRule="evenodd"
           />
         </svg>
-        <p className="text-white font-poppins uppercase text-sm">
+        <p className="text-white font-poppins uppercase text-xs">
           Cornwall, Scotland
         </p>
       </div>
-      <h2 className="text-white text-8xl font-roslindale font-light mb-20">
+      <h2 className="text-white text-7xl md:text-8xl font-roslindale font-light mb-20">
         Amelia
       </h2>
       <div className="relative">
@@ -56,7 +56,7 @@ export const Movie = () => {
             </svg>
           </div>
         </Link>
-        <div className="absolute -top-[15%] -right-[15%] z-0 w-[18vw] h-[20vh] max-w-[400px] max-h-[300px] rounded-3xl overflow-hidden flex-auto">
+        <div className="absolute -top-[12%] md:-top-[15%] -right-[15%] z-0 w-[32vw] h-[14vh] md:w-[18vw] md:h-[20vh] max-w-[400px] max-h-[300px] rounded-3xl overflow-hidden flex-auto">
           <Image
             className="object-cover"
             src="/video-thumbnail-2.jpeg"
@@ -64,7 +64,7 @@ export const Movie = () => {
             fill
           />
         </div>
-        <div className="absolute top-[50%] -left-[13%] z-20 w-[12vw] h-[18vh] max-w-[300px] max-h-[240px] rounded-3xl overflow-hidden flex-auto -translate-y-[50%]">
+        <div className="absolute top-[50%] -left-[40%] md:-left-[13%] z-20 w-[32vw] h-[12vh] md:w-[12vw] md:h-[18vh] max-w-[300px] max-h-[240px] rounded-3xl overflow-hidden flex-auto -translate-y-[50%]">
           <Image
             className="object-cover"
             src="/video-thumbnail-3.jpeg"
@@ -72,7 +72,7 @@ export const Movie = () => {
             fill
           />
         </div>
-        <div className="absolute -bottom-[10%] right-[13%] z-20 w-[14vw] h-[18vh] max-w-[280px] max-h-[200px] rounded-3xl overflow-hidden flex-auto">
+        <div className="absolute -bottom-[10%] -right-[13%] md:right-[13%] z-20 w-[42vw] h-[14vh] md:w-[14vw] md:h-[18vh] max-w-[280px] max-h-[200px] rounded-3xl overflow-hidden flex-auto">
           <Image
             className="object-cover"
             src="/video-thumbnail-4.jpeg"
@@ -81,7 +81,7 @@ export const Movie = () => {
           />
         </div>
       </div>
-      <Button className="mt-14">See case study</Button>
+      <Button className="mt-20 md:mt-14">See case study</Button>
     </section>
   );
 };

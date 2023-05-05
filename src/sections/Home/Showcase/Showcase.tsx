@@ -39,6 +39,7 @@ export const Showcase = () => {
     transformValues,
     getTranslateValues("right")
   );
+
   return (
     <article
       ref={articleRef}
@@ -55,9 +56,9 @@ export const Showcase = () => {
           fill
         />
       </motion.div>
-      <div className="flex flex-col justify-center items-center gap-24 px-16 w-[50vw] max-w-[600px] flex-auto">
+      <div className="flex flex-col justify-center items-center gap-24 md:px-16 w-[50vw] max-w-[600px] flex-auto">
         <div className="flex items-center gap-5">
-          <p className="text-white font-poppins uppercase text-xs">
+          <p className="text-white font-poppins uppercase text-xs whitespace-nowrap">
             September 2019
           </p>
           <svg
@@ -75,14 +76,14 @@ export const Showcase = () => {
           <p className="text-white font-poppins uppercase text-xs">Mongolia</p>
         </div>
         <div className="flex flex-col items-center gap-6">
-          <h1 className="text-white text-8xl text-center font-roslindale font-light">
-            Follow The <br /> Tracks
+          <h1 className="text-white text-7xl md:text-8xl text-center font-roslindale font-light">
+            Follow The Tracks
           </h1>
           <Link href="/stills/test">
             <Button>See case study</Button>
           </Link>
         </div>
-        <div className="w-2/4 h-4 bg-orange rounded-xl"></div>
+        <div className="w-full md:w-2/4 h-4 bg-orange rounded-xl"></div>
       </div>
       <motion.div
         style={{ translateX: translateXRight, rotate: "2deg" }}
