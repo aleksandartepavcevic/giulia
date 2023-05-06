@@ -1,10 +1,10 @@
 import { Button } from "@/components/Button/Button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { cubicBezier, motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
-const { screens } = require("tailwindcss/defaultTheme");
+import { screens } from "tailwindcss/defaultTheme";
 
 export const Showcase = () => {
   const isMobile = useMediaQuery(`(max-width: ${screens.md})`);
@@ -32,18 +32,20 @@ export const Showcase = () => {
   const translateXLeft = useTransform(
     scrollYProgress,
     transformValues,
-    getTranslateValues("left")
+    getTranslateValues("left"),
+    { ease: cubicBezier(0.62, 0.03, 0.49, 0.94) }
   );
   const translateXRight = useTransform(
     scrollYProgress,
     transformValues,
-    getTranslateValues("right")
+    getTranslateValues("right"),
+    { ease: cubicBezier(0.62, 0.03, 0.49, 0.94) }
   );
 
   return (
     <article
       ref={articleRef}
-      className="flex items-center justify-center h-screen"
+      className="flex items-center justify-center h-screen my-20"
     >
       <motion.div
         style={{ translateX: translateXLeft, rotate: "-2deg" }}

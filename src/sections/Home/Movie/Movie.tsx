@@ -1,22 +1,40 @@
 import { Button } from "@/components/Button/Button";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  cubicBezier,
+  easeInOut,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
 
 export const Movie = () => {
   const ref = useRef<HTMLElement>(null);
-  const mouseX = useMotionValue(0);
-  const distance = useTransform(mouseX, (val) => {
+  const mouseX = useMotionValue(Infinity);
+  const distanceSync = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() || { x: 0, width: 0 };
+
+    if (val === Infinity) return 0;
+
     return val - bounds.x - bounds?.width / 2;
   });
-  const rotateY = useTransform(
+
+  const distance = useSpring(distanceSync);
+
+  const containerTransform = useTransform(
     distance,
-    [-600, 0, 600],
-    ["-8deg", "0deg", "8deg"]
+    [-800, 0, 800],
+    [
+      "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(2deg) rotateY(15deg) rotateZ(0deg) skew(0deg, 0deg)",
+      "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(2deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)",
+      "translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(2deg) rotateY(-15deg) rotateZ(0deg) skew(0deg, 0deg)",
+    ]
   );
-  const translate3D = useTransform(
+
+  const imageTransform = useTransform(
     distance,
     [-600, 0, 600],
     [
@@ -25,11 +43,11 @@ export const Movie = () => {
       "translate3d(-30px, 0px, 0px)",
     ]
   );
+
   return (
     <section
-      onMouseMove={(e) => {
-        mouseX.set(e.clientX);
-      }}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      onMouseMove={(e) => mouseX.set(e.clientX)}
       ref={ref}
       className="flex justify-center items-center flex-col"
     >
@@ -56,22 +74,34 @@ export const Movie = () => {
       <h2 className="text-white text-7xl md:text-8xl font-roslindale font-light mb-20">
         Amelia
       </h2>
-      <motion.div style={{ rotateY }} className="relative">
-        <Link href="/motion/test" className="overflow-hidden">
+      <motion.div
+        style={{
+          transform: containerTransform,
+          willChange: "transform",
+          transformStyle: "preserve-3d",
+        }}
+        className="relative"
+      >
+        <Link
+          href="/motion/test"
+          className="block rounded-3xl overflow-hidden w-[70vw] md:w-[60vw] h-[55vh] max-w-[800px] max-h-[600px]"
+        >
           <motion.div
             style={{
-              // transform: translate3D,
+              transform: imageTransform,
               transformStyle: "preserve-3d",
               willChange: "transform",
             }}
-            className="relative z-10 w-[60vw] h-[55vh] max-w-[1024px] max-h-[768px] rounded-3xl overflow-hidden flex-auto"
+            className="relative z-10 w-full h-full"
           >
-            <Image
-              className="object-cover"
-              src="/video-thumbnail-1.jpeg"
-              alt="Image"
-              fill
-            />
+            <motion.div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%+64px)] h-[calc(100%+64px)]">
+              <Image
+                className="object-cover"
+                src="/video-thumbnail-1.jpeg"
+                alt="Image"
+                fill
+              />
+            </motion.div>
           </motion.div>
           <div className="absolute flex justify-center items-center z-20 left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] w-[100px] h-[100px] bg-black/40 rounded-full backdrop-blur-md">
             <svg
@@ -90,32 +120,65 @@ export const Movie = () => {
             </svg>
           </div>
         </Link>
-        <div className="absolute -top-[12%] md:-top-[15%] -right-[15%] z-0 w-[32vw] h-[14vh] md:w-[18vw] md:h-[20vh] max-w-[400px] max-h-[300px] rounded-3xl overflow-hidden flex-auto">
-          <Image
-            className="object-cover"
-            src="/video-thumbnail-2.jpeg"
-            alt="Image"
-            fill
-          />
+        <div className="absolute -top-[12%] md:-top-[15%] -right-[15%] z-0 w-[32vw] h-[14vh] md:w-[18vw] md:h-[20vh] max-w-[300px] max-h-[280px] rounded-3xl overflow-hidden flex-auto">
+          <motion.div
+            style={{
+              transform: imageTransform,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+            }}
+            className="relative w-full h-full"
+          >
+            <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%+64px)] h-[calc(100%+64px)]">
+              <Image
+                className="object-cover"
+                src="/video-thumbnail-2.jpeg"
+                alt="Image"
+                fill
+              />
+            </div>
+          </motion.div>
         </div>
-        <div className="absolute top-[50%] -left-[40%] md:-left-[13%] z-20 w-[32vw] h-[12vh] md:w-[12vw] md:h-[18vh] max-w-[300px] max-h-[240px] rounded-3xl overflow-hidden flex-auto -translate-y-[50%]">
-          <Image
-            className="object-cover"
-            src="/video-thumbnail-3.jpeg"
-            alt="Image"
-            fill
-          />
+        <div className="absolute top-[50%] -left-[30%] md:-left-[13%] z-20 w-[32vw] h-[12vh] md:w-[12vw] md:h-[18vh] max-w-[300px] max-h-[240px] rounded-3xl overflow-hidden flex-auto -translate-y-[50%]">
+          <motion.div
+            style={{
+              transform: imageTransform,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+            }}
+            className="relative w-full h-full"
+          >
+            <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%+64px)] h-[calc(100%+64px)]">
+              <Image
+                className="object-cover"
+                src="/video-thumbnail-3.jpeg"
+                alt="Image"
+                fill
+              />
+            </div>
+          </motion.div>
         </div>
-        <div className="absolute -bottom-[10%] -right-[13%] md:right-[13%] z-20 w-[42vw] h-[14vh] md:w-[14vw] md:h-[18vh] max-w-[280px] max-h-[200px] rounded-3xl overflow-hidden flex-auto">
-          <Image
-            className="object-cover"
-            src="/video-thumbnail-4.jpeg"
-            alt="Image"
-            fill
-          />
+        <div className="absolute -bottom-[10%] -right-[13%] md:right-[13%] z-20 w-[42vw] h-[14vh] md:w-[14vw] md:h-[18vh] max-w-[250px] max-h-[200px] rounded-3xl overflow-hidden flex-auto">
+          <motion.div
+            style={{
+              transform: imageTransform,
+              transformStyle: "preserve-3d",
+              willChange: "transform",
+            }}
+            className="relative w-full h-full"
+          >
+            <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%+64px)] h-[calc(100%+64px)]">
+              <Image
+                className="object-cover"
+                src="/video-thumbnail-4.jpeg"
+                alt="Image"
+                fill
+              />
+            </div>
+          </motion.div>
         </div>
       </motion.div>
-      <Button className="mt-20 md:mt-14">See case study</Button>
+      <Button className="mt-20 md:mt-16">See case study</Button>
     </section>
   );
 };
