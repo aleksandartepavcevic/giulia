@@ -84,7 +84,7 @@ export const Movie = () => {
       >
         <Link
           href="/motion/test"
-          className="block rounded-3xl overflow-hidden w-[70vw] md:w-[60vw] h-[55vh] max-w-[800px] max-h-[600px]"
+          className="relative z-10 block rounded-3xl overflow-hidden w-[70vw] md:w-[60vw] h-[55vh] max-w-[800px] max-h-[600px]"
         >
           <motion.div
             style={{
@@ -92,7 +92,7 @@ export const Movie = () => {
               transformStyle: "preserve-3d",
               willChange: "transform",
             }}
-            className="relative z-10 w-full h-full"
+            className="w-full h-full"
           >
             <motion.div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%+64px)] h-[calc(100%+64px)]">
               <Image

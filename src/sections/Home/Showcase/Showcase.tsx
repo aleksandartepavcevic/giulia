@@ -1,6 +1,12 @@
 import { Button } from "@/components/Button/Button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { cubicBezier, motion, useScroll, useTransform } from "framer-motion";
+import {
+  cubicBezier,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useRef } from "react";
@@ -9,10 +15,12 @@ import { screens } from "tailwindcss/defaultTheme";
 export const Showcase = () => {
   const isMobile = useMediaQuery(`(max-width: ${screens.md})`);
   const articleRef = useRef(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: scrollYProgressSync } = useScroll({
     target: articleRef,
     offset: ["start end", "end end"],
   });
+
+  const scrollYProgress = useSpring(scrollYProgressSync, { mass: 0.5 });
 
   const getTranslateValues = (direction: string) => {
     const maxDesktopValue = direction === "left" ? "100%" : "-100%";
@@ -33,13 +41,13 @@ export const Showcase = () => {
     scrollYProgress,
     transformValues,
     getTranslateValues("left"),
-    { ease: cubicBezier(0.62, 0.03, 0.49, 0.94) }
+    { ease: cubicBezier(0.99, 0, 0.7, 0.39) }
   );
   const translateXRight = useTransform(
     scrollYProgress,
     transformValues,
     getTranslateValues("right"),
-    { ease: cubicBezier(0.62, 0.03, 0.49, 0.94) }
+    { ease: cubicBezier(0.99, 0, 0.7, 0.39) }
   );
 
   return (
@@ -48,7 +56,11 @@ export const Showcase = () => {
       className="flex items-center justify-center h-screen my-20"
     >
       <motion.div
-        style={{ translateX: translateXLeft, rotate: "-2deg" }}
+        style={{
+          translateX: translateXLeft,
+          rotate: "-2deg",
+          willChange: "translate",
+        }}
         className="relative w-[50vw] h-[80%] min-w-[300px] max-w-[600px] rounded-3xl overflow-hidden flex-auto"
       >
         <Image
@@ -88,7 +100,11 @@ export const Showcase = () => {
         <div className="w-full md:w-2/4 h-4 bg-orange rounded-xl"></div>
       </div>
       <motion.div
-        style={{ translateX: translateXRight, rotate: "2deg" }}
+        style={{
+          translateX: translateXRight,
+          rotate: "2deg",
+          willChange: "translate",
+        }}
         className="relative w-[50vw] h-[80%] min-w-[300px] max-w-[600px] rounded-3xl overflow-hidden flex-auto"
       >
         <Image
